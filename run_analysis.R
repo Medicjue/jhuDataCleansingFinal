@@ -29,10 +29,10 @@ data.x <- rbind(data.train.x,data.test.x)
 data.y <- rbind(data.train.y, data.test.y)
 data.subject <- rbind(data.train.subject, data.test.subject)
 
-features.mean.std <- grepl("mean|std",data.features[,2])
+features.mean.std <- grepl("mean\\(\\)|std\\(\\)",data.features[,2])
 
 data.extract.x <- data.x[,features.mean.std]
-data.features[grepl("mean|std",data.features[,2]),2]
+data.features[features.mean.std,2]
 class(data.extract.x)
 names(data.extract.x) <- data.features[features.mean.std,2]
 
