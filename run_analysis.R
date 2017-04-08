@@ -13,3 +13,36 @@ unzip("data.zip")
 
 data.features <- read.table("UCI HAR Dataset/features.txt", header = F , sep = " ")
 data.activity.labels <- read.table("UCI HAR Dataset/activity_labels.txt", header = F , sep = " ")
+
+## Load Train Data
+data.train.x <- read.table("UCI HAR Dataset/train/X_train.txt")
+data.train.y <- read.table("UCI HAR Dataset/train/y_train.txt")
+data.train.subject <- read.table("UCI HAR Dataset/train/subject_train.txt")
+
+## Load Test Data
+data.test.x <- read.table("UCI HAR Dataset/test/X_test.txt")
+data.test.y <- read.table("UCI HAR Dataset/test/y_test.txt")
+data.test.subject <- read.table("UCI HAR Dataset/test/subject_test.txt")
+
+## Combine Train and Test
+data.x <- rbind(data.train.x,data.test.x)
+data.y <- rbind(data.train.y, data.test.y)
+data.subject <- rbind(data.train.subject, data.test.subject)
+
+features.mean.std <- grepl("mean|std",data.features[,2])
+
+data.extract.x <- data.x[,features.mean.std]
+data.features[grepl("mean|std",data.features[,2]),2]
+class(data.extract.x)
+names(data.extract.x) <- data.features[features.mean.std,2]
+
+data.activity.labels
+
+names(data.y) <- "activityId"
+names(data.activity.labels) <- c("activityId","activity")
+
+data <- cbind(data.subject,merge(data.y, data.activity.labels, by.x = "activityId", by.y = "activityId")[,2],data.extract.x)
+names(data)[1] <- "subject"
+names(data)[2] <- "activity"
+
+write.table(data,"tidy_data.txt", row.names = F)
