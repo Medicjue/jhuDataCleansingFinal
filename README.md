@@ -32,7 +32,7 @@ It follows the goals step by step.
   * Combine training and test data for subject, x, y.
 
 * Step 3:
-  * Read all features from features.txt and filter it to only leave features that are either means ("mean()") or standard deviations ("std()"). The reason for leaving out meanFreq() is that the goal for this step is to only include means and standard deviations of measurements, of which meanFreq() is neither.
+  * Read all features from features.txt and filter it to only leave features that are either means ("mean()") or standard deviations ("std()").
   * Also, using previous filtering rule to label each column name of features.
   
 * Step 4:
