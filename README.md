@@ -1,7 +1,7 @@
-# Getting and cleaning data README
+# Johns Hopkins University - Getting and Cleaning Data README
 For creating a tidy data set of wearable computing data originally from http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
-## Files in this repo
+## Files in this repository
 * README.md -- This document
 * CodeBook.md -- Codebook describing variables, the data and transformations
 * run_analysis.R -- R code for tidying data
@@ -24,23 +24,23 @@ The output is created in working directory with the name of tidy_data.txt
 ## run_analysis.R walkthrough
 It follows the goals step by step.
 
-* Step 0:
-  * Check UCI HAR Dataset folder existence, if not download file and unzip it.
-
 * Step 1:
+  * Check UCI HAR Dataset folder existence; if not, download file and unzip it.
+
+* Step 2:
   * Read all test and training files.
   * Combine training and test data for subject, x, y.
 
-* Step 2:
+* Step 3:
   * Read all features from features.txt and filter it to only leave features that are either means ("mean()") or standard deviations ("std()"). The reason for leaving out meanFreq() is that the goal for this step is to only include means and standard deviations of measurements, of which meanFreq() is neither.
   * Also, using previous filtering rule to label each column name of features.
   
-* Step 3:
+* Step 4:
   * Read the activity labels from activity_labels.txt and replace the numbers with the text by `merge()` function.
 
-* Step 4:
+* Step 5:
   * Using `cbind()` to merge subject, activity, and filtered features.
   * Label subject and activity column.
   
-* Step 5:
+* Step 6:
   * Write the new tidy set into a text file called tidy_data.txt.
